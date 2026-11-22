@@ -1,5 +1,5 @@
 import * as T from './assets/three.module.js';
-import {createLab} from './bench-lab.js';
+import {createLab} from './bench-lab.js?v=bench-2';
 import {createBenchOptics} from './bench-optics.js';
 
 export function createWorkbench(stage) {
@@ -36,16 +36,23 @@ export function createWorkbench(stage) {
   const grid=new T.GridHelper(70,70,0x454474,0x272741);
   grid.position.y=-2.73;scene.add(grid);
 
-  const monitor=new T.Group();monitor.position.set(-.47,0,-.96);scene.add(monitor);
+  const monitor=new T.Group();monitor.position.set(-.47,0,-1.56);scene.add(monitor);
   const screenW=4.95,screenH=2.81,screenY=2.42,screenZ=.10;
   const bezel=new T.MeshStandardMaterial({color:0x17172c,roughness:.51,metalness:.26});
-  box(monitor,0,screenY,-.016,5.10,2.97,.20,bezel);
-  box(monitor,0,screenY,-.132,2.20,1.23,.14,trim);
-  for(let i=0;i<12;i++)box(monitor,-.93+i*.171,2.82,-.21,.062,.24,.026,bezel);
-  box(monitor,2.10,.968,.086,.14,.019,.028,cyan);
+  box(monitor,0,screenY,-.054,5.15,3.01,.12,trim);
+  box(monitor,0,screenY,.024,5.075,2.94,.135,bezel);
+  box(monitor,0,screenY,-.133,2.20,1.23,.119,trim);
+  box(monitor,0,screenY-.34,-.201,1.81,.30,.030,bezel);
+  for(let i=0;i<14;i++)box(monitor,-1.005+i*.154,2.82,-.199,.062,.22,.018,bezel);
+  for(let i=0;i<4;i++)box(monitor,-.68+i*.19,screenY-.36,-.220,.123,.056,.017,metal);
+  box(monitor,2.10,.968,.086,.079,.014,.022,cyan);
+  for(let i=0;i<3;i++)box(monitor,2.22+i*.07,.964,.085,.036,.021,.026,metal);
   for(const side of [-1,1]){
     const arm=box(monitor,side*.54,.63,-.125,.123,1.23,.21,metal);
     arm.rotation.z=side*.35;
+    const accent=box(monitor,side*.54,.63,-.236,.082,1.05,.027,bezel);
+    accent.rotation.z=side*.35;
+    box(monitor,side*.36,1.16,-.165,.228,.168,.22,trim);
     box(monitor,side*.74,.078,-.05,.42,.126,.70,shell);
     box(monitor,side*.74,.099,.31,.24,.031,.035,cyan);
   }
@@ -79,11 +86,11 @@ export function createWorkbench(stage) {
   const projectButton=document.getElementById('inspect-safe');
   const liftButton=document.getElementById('toggle-lift');
   let available=false, focused=false, paused=false, dirty=true, inspection=false;
-  const home={theta:.08,phi:1.16,radius:12.05,target:new T.Vector3(0,.85,-.26)};
+  const home={theta:.10,phi:1.08,radius:14.50,target:new T.Vector3(0,.78,-.18)};
   let {theta,phi,radius}=home;
   let liftRaised=true,liftHeight=.62,elapsed=0,lastFrame=0;
   const target=home.target.clone(), current=new T.Vector3(), look=new T.Vector3();
-  const projectCenter=new T.Vector3(2.89,.52,1.07);
+  const projectCenter=new T.Vector3(slot.position.x,.52,slot.position.z);
   const aim=new T.Vector3();
   const pick=new T.Raycaster();
   const clickable=new T.Vector2();

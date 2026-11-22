@@ -12,6 +12,8 @@ export function createLab(scene) {
   const trim=standard('#2d4970',.3), violet=standard('#4a315b');
   const cyan=light(pigments.cyan), pink=light(pigments.pink), lime=light(pigments.lime);
   const white=light(pigments.pale), mutedBlue=light('#1870a8');
+  const ceramic=standard('#a0aec5',.26), gasket=standard('#0b111c',.03);
+  const champagne=standard('#ad9272',.57);
   const boxGeometry=new T.BoxGeometry(1,1,1);
 
   function box(parent,x,y,z,w,h,d,material) {
@@ -53,11 +55,16 @@ export function createLab(scene) {
     return [[-x+cut,-z],[x-cut,-z],[x,-z+cut],[x,z-cut],[x-cut,z],[-x+cut,z],[-x,z-cut],[-x,-z+cut]]
       .map(([a,b])=>[cx+a,cz+b]);
   }
+  function fastener(parent,x,y,z,r=.034) {
+    cylinder(parent,x,y,z,r,r,.016,metal,20);
+    box(parent,x,y+.009,z,r*1.18,.004,r*.23,gasket);
+  }
 
-  const outer = [[-5.43,-1.77],[-4.56,-2.62],[4.52,-2.62],[5.47,-1.7],[5.47,1.02],[4.48,2.15],[2.76,2.15],[2.15,2.46],[-2.07,2.46],[-2.67,2.17],[-4.49,2.17],[-5.43,1.17]];
-  const wellX=-3.95,wellZ=.47,wellRadius=.79;
-  const well=Array.from({length:12},(_,i)=>{
-    const a=(i+.5)*Math.PI/6;
+  const outer = [[-5.43,-1.77],[-4.56,-2.62],[4.52,-2.62],[5.47,-1.7],[5.47,1.02],[4.48,2.15],[2.76,2.15],[2.15,2.46],[-2.07,2.46],[-2.67,2.17],[-4.49,2.17],[-5.43,1.17]]
+    .map(([x,z])=>[x*1.25,z*1.36]);
+  const wellX=-4.83,wellZ=.88,wellRadius=.79;
+  const well=Array.from({length:40},(_,i)=>{
+    const a=i*Math.PI/20;
     return [wellX+Math.cos(a)*wellRadius,wellZ+Math.sin(a)*wellRadius];
   });
   // The well is cut through all three shells. The inner wall extends below the top.
@@ -65,21 +72,26 @@ export function createLab(scene) {
   extrude(scene,outer.map(([x,z])=>[x*.976,z*.96]),-.063,.045,inset,[well],.019);
   extrude(scene,outer.map(([x,z])=>[x*.92,z*.91]),-.52,.20,trim,[well],.06);
   const pitWall = new T.MeshStandardMaterial({color:'#0d2240',side:T.DoubleSide,roughness:.5});
-  cylinder(scene,wellX,-.42,wellZ,.766,.77,1.02,pitWall,12,true).rotation.y=Math.PI/12;
+  cylinder(scene,wellX,-.42,wellZ,.778,.778,1.02,pitWall,40,true);
   cylinder(scene,wellX,-.91,wellZ,.76,.72,.13,inset);
-  ring(scene,wellX,-.026,wellZ,.88,.036,lime,12).rotation.z=Math.PI/12;
-  ring(scene,wellX,-.072,wellZ,.77,.03,cyan,12).rotation.z=Math.PI/12;
+  ring(scene,wellX,.004,wellZ,.93,.135,metal,48);
+  ring(scene,wellX,.006,wellZ,.83,.018,champagne,48);
+  ring(scene,wellX,-.072,wellZ,.765,.022,cyan,40);
   for(let i=0;i<12;i++){
     const a=i*Math.PI/6;
-    const mark=box(scene,wellX+Math.cos(a)*.959,-.022,wellZ+Math.sin(a)*.959,.095,.008,.027,i%3===0?lime:trim);
+    const mark=box(scene,wellX+Math.cos(a)*.982,-.010,wellZ+Math.sin(a)*.982,.095,.008,.027,i%3===0?lime:trim);
     mark.rotation.y=-a;
+    if(i%3===0)fastener(scene,wellX+Math.cos(a)*.895,.014,wellZ+Math.sin(a)*.895,.019);
   }
   const lift = new T.Group();
   lift.position.set(wellX,.62,wellZ);scene.add(lift);
   cylinder(scene,wellX,-.56,wellZ,.235,.35,.67,trim,8);
-  cylinder(lift,0,-.69,0,.16,.16,1.31,metal,8);
-  cylinder(lift,0,-.024,0,.60,.50,.13,trim);
-  ring(lift,0,.045,0,.54,.03,lime,12);
+  cylinder(lift,0,-.69,0,.13,.13,1.31,metal,32);
+  cylinder(lift,0,-.27,0,.205,.205,.25,gasket,32);
+  cylinder(lift,0,-.39,0,.213,.213,.040,champagne,32);
+  cylinder(lift,0,-.025,0,.60,.53,.13,trim,36);
+  cylinder(lift,0,.045,0,.553,.573,.045,ceramic,36);
+  ring(lift,0,.070,0,.535,.021,lime,48);
   for(const x of [-.32,.32]){
     box(lift,x,.156,0,.027,.27,.027,cyan);
     box(lift,x,.025,0,.12,.05,.35,shell);
@@ -88,36 +100,52 @@ export function createLab(scene) {
   const capsule = new T.Group();
   capsule.position.y=.29;lift.add(capsule);
   const cell=cylinder(capsule,0,0,0,.171,.171,.48,
-    new T.MeshBasicMaterial({color:'#00ccff',transparent:true,opacity:.33,depthWrite:false,side:T.DoubleSide}),8,true);
+    new T.MeshPhysicalMaterial({color:'#63ecff',roughness:.22,transparent:true,opacity:.27,depthWrite:false,side:T.DoubleSide,clearcoat:1}),32,true);
   cell.renderOrder=3;
   cylinder(capsule,0,0,0,.086,.086,.39,cyan,6);
   for(const y of [-.24,.24]) {
-    cylinder(capsule,0,y,0,.187,.187,.068,shell,8);
-    cylinder(capsule,0,y,0,.191,.191,.018,lime,8);
+    cylinder(capsule,0,y,0,.192,.192,.071,shell,32);
+    cylinder(capsule,0,y+Math.sign(y)*.033,0,.171,.178,.016,ceramic,32);
+    cylinder(capsule,0,y-Math.sign(y)*.030,0,.195,.195,.012,lime,32);
+    if(y>0)fastener(capsule,0,y+.047,0,.047);
   }
 
   // Paired inclined supports feed into the desk's central conduit.
   for(const sign of [-1,1]){
-    const knee=sign*3.64, foot=sign*4.22;
+    const knee=sign*4.55, foot=sign*5.28;
     link(scene,[knee,-.36,-.60],[foot,-2.61,.43],.63,.59,shell);
     link(scene,[knee,-.57,1.47],[foot,-2.34,1.18],.25,.30,trim);
-    link(scene,[knee,-.43,-.26],[foot,-2.53,.70],.065,.029,sign<0?cyan:pink);
+    link(scene,[knee,-.48,-.26],[foot,-2.53,.70],.34,.11,gasket);
+    link(scene,[knee,-.59,-.20],[foot,-2.38,.64],.065,.037,sign<0?cyan:pink);
     extrude(scene,chamfer(foot,.48,1.04,2.36,.32),-2.71,.13,trim);
-    box(scene,foot,-2.565,1.19,.61,.024,.074,sign<0?cyan:pink);
+    extrude(scene,chamfer(foot,.53,.88,1.89,.23),-2.555,.065,shell,[],.025);
+    for(const z of [-.12,1.12])fastener(scene,foot,-2.465,z,.046);
+    box(scene,foot,-2.48,1.19,.49,.021,.067,sign<0?cyan:pink);
   }
   box(scene,0,-.78,-1.99,6.48,.52,.65,inset);
   for(let i=0;i<11;i++)box(scene,-1.40+i*.28,-.67,-1.646,.176,.14,.027,i%5===0?mutedBlue:trim);
   for(const [index,a] of outer.entries()){
     const b=outer[(index+1)%outer.length], x=(a[0]+b[0])/2,z=(a[1]+b[1])/2;
     const length=Math.hypot(b[0]-a[0],b[1]-a[1]);
-    const rail=box(scene,x,-.16,z,length*.86,.035,.031,index>=5&&index<=9?cyan:mutedBlue);
+    const rail=box(scene,x,-.16,z,length*.84,.038,.060,metal);
     rail.rotation.y=-Math.atan2(b[1]-a[1],b[0]-a[0]);
   }
-  for(let i=0;i<11;i++)box(scene,-2.18+i*.44,-.351,1.98,.18,.042,.036,i%3===0?lime:trim);
+  for(let i=0;i<11;i++)box(scene,-2.18+i*.44,-.33,3.19,.18,.042,.036,i%3===0?lime:trim);
+  const matOutline=chamfer(.12,1.18,5.38,2.86,.29);
+  extrude(scene,matOutline,.004,.014,gasket,[],.012);
+  // Recessed markings on the section of the work surface left clear for fabrication.
+  for(let i=0;i<21;i++){
+    const x=-2.24+i*.237;
+    box(scene,x,.033,2.47,.013,.003,i%5===0?.132:.066,metal);
+  }
 
   // Front controls: a machined keyboard, a jog dial and a pressure stylus.
-  const keyboard=new T.Group();keyboard.position.set(-.88,0,1.26);scene.add(keyboard);
-  extrude(keyboard,chamfer(0,0,2.91,.77,.13),.026,.069,trim,[],.022);
+  const keyboard=new T.Group();keyboard.position.set(-.88,.026,1.94);scene.add(keyboard);
+  extrude(keyboard,chamfer(0,0,2.96,.81,.12),.022,.048,shell,[],.024);
+  extrude(keyboard,chamfer(0,0,2.83,.70,.085),.078,.012,gasket,[],.013);
+  const cap=new T.Shape(chamfer(0,0,.110,.106,.016).map(([x,z])=>new T.Vector2(x,-z)));
+  const capGeometry=new T.ExtrudeGeometry(cap,{depth:.027,bevelThickness:.009,bevelSize:.009,bevelSegments:2});
+  capGeometry.rotateX(-Math.PI/2);
   const keys=[];
   for(let row=0;row<4;row++)for(let col=0;col<17;col++){
     if(row===3&&col>=4&&col<=12)continue;
@@ -125,19 +153,27 @@ export function createLab(scene) {
   }
   for(const accent of [false,true]){
     const set=keys.filter(key=>key.accent===accent);
-    const mesh=new T.InstancedMesh(boxGeometry,accent?violet:metal,set.length);
+    const mesh=new T.InstancedMesh(capGeometry,accent?violet:ceramic,set.length);
     const matrix=new T.Matrix4();
     set.forEach(({x,y,z},i)=>{
-      matrix.makeScale(.139,.05,.139);matrix.setPosition(x,y,z);mesh.setMatrixAt(i,matrix);
+      matrix.makeTranslation(x,y,z);mesh.setMatrixAt(i,matrix);
     });
     keyboard.add(mesh);
   }
   box(keyboard,-.06,.12,.232,1.39,.05,.135,metal);
-  const dial=new T.Group();dial.position.set(1.29,0,1.48);scene.add(dial);
+  for(const x of [-1.35,1.35])fastener(keyboard,x,.091,.315,.014);
+  box(keyboard,-1.30,.091,-.359,.19,.009,.015,cyan);
+  const dial=new T.Group();dial.position.set(1.23,.025,1.98);scene.add(dial);
   extrude(dial,chamfer(0,0,.77,.79,.17),.016,.082,trim);
-  ring(dial,0,.117,0,.267,.027,pink,16);
-  cylinder(dial,0,.174,0,.185,.201,.117,shell,16);
-  box(dial,0,.24,.041,.025,.009,.115,white);
+  ring(dial,0,.128,0,.267,.020,metal,48);
+  cylinder(dial,0,.174,0,.184,.201,.117,shell,48);
+  cylinder(dial,0,.235,0,.173,.184,.025,ceramic,48);
+  for(let i=0;i<32;i++){
+    const a=i*Math.PI/16;
+    const grip=box(dial,Math.cos(a)*.192,.177,Math.sin(a)*.192,.016,.064,.016,gasket);
+    grip.rotation.y=-a;
+  }
+  box(dial,0,.250,.061,.019,.006,.098,white);
 
   // A diagnostic puck, chip samples, patch connections and sample cartridges.
   const probeRack=new T.Group();probeRack.position.set(-2.62,0,-1.55);scene.add(probeRack);
@@ -154,17 +190,18 @@ export function createLab(scene) {
     scene.add(new T.Mesh(new T.TubeGeometry(cable,18,.016,5),color));
   }
   for(let i=0;i<5;i++)box(scene,.61+i*.16,.096,-1.59,.10,.11,.23,metal);
-  const cartridges=new T.Group();cartridges.position.set(4.43,0,1.26);cartridges.rotation.y=.28;scene.add(cartridges);
+  const cartridges=new T.Group();cartridges.position.set(5.56,0,1.27);cartridges.rotation.y=.28;scene.add(cartridges);
   for(let i=0;i<3;i++){
     const z=-.31+i*.30;
     extrude(cartridges,chamfer(0,z,.61,.26,.05),.02,.12,i===2?violet:trim,[],.017);
     box(cartridges,-.06,.156,z,.24,.008,.072,i===2?pink:mutedBlue);
     box(cartridges,.16,.152,z,.112,.009,.066,metal);
+    for(let pin=0;pin<4;pin++)box(cartridges,.30,.083,z-.078+pin*.051,.015,.032,.022,champagne);
   }
   const handle=link(scene,[-2.99,.11,1.53],[-2.54,.11,1.29],.09,.084,shell);
   link(scene,[-2.54,.11,1.29],[-2.40,.11,1.22],.042,.042,cyan);
   handle.rotation.z+=.02;
-  const board=new T.Group();board.position.set(4.42,.026,-.12);board.rotation.y=-.17;scene.add(board);
+  const board=new T.Group();board.position.set(5.51,.026,-.03);board.rotation.y=-.17;scene.add(board);
   extrude(board,chamfer(0,0,.74,.61,.085),0,.04,trim,[],.009);
   box(board,-.105,.083,0,.216,.082,.27,violet);
   box(board,.185,.069,.11,.17,.057,.15,metal);
@@ -173,20 +210,27 @@ export function createLab(scene) {
     for(const x of [-.246,.037])box(board,x,.059,z,.069,.025,.019,metal);
     box(board,.31,.056,-.208+i*.07,.053,.017,.026,i===0?lime:mutedBlue);
   }
+  for(const x of [-.286,.286])for(const z of [-.201,.201])fastener(board,x,.053,z,.013);
   const gauge=new T.Group();gauge.position.set(-2.59,.032,.34);scene.add(gauge);
   extrude(gauge,chamfer(0,0,.67,.45,.10),0,.071,shell,[],.015);
   box(gauge,0,.093,0,.42,.015,.246,inset);
   for(let i=0;i<4;i++)box(gauge,-.135+i*.09,.103,0,.049,.008,.12,i===3?lime:cyan);
 
-  const projector = new T.Group();projector.position.set(3.94,0,-1.47);scene.add(projector);
-  extrude(projector,chamfer(0,0,1.81,1.44,.26),.00,.16,trim);
-  cylinder(projector,0,.16,0,.66,.71,.24,inset,16);
-  ring(projector,0,.286,0,.65,.025,pink);
-  ring(projector,0,.29,0,.49,.021,cyan);
-  cylinder(projector,0,.23,0,.19,.25,.09,cyan,8);
+  const projector = new T.Group();projector.position.set(4.69,0,-1.75);scene.add(projector);
+  extrude(projector,chamfer(0,0,1.87,1.52,.28),.00,.135,trim);
+  extrude(projector,chamfer(0,0,1.72,1.37,.26),.151,.030,ceramic,[],.023);
+  cylinder(projector,0,.173,0,.684,.712,.16,gasket,48);
+  cylinder(projector,0,.26,0,.647,.677,.058,metal,48);
+  cylinder(projector,0,.286,0,.484,.484,.038,inset,48);
+  ring(projector,0,.296,0,.64,.020,pink,56);
+  ring(projector,0,.307,0,.478,.013,cyan,56);
+  cylinder(projector,0,.307,0,.175,.236,.057,ceramic,40);
+  cylinder(projector,0,.339,0,.151,.169,.025,cyan,40);
+  for(const x of [-.62,.62])for(const z of [-.48,.48])fastener(projector,x,.211,z,.024);
+  for(let i=0;i<9;i++)box(projector,-.34+i*.085,.097,.74,.047,.051,.011,gasket);
   for(let i=0;i<8;i++){
     const a=i*Math.PI/4;
-    const emitter=box(projector,Math.cos(a)*.561,.284,Math.sin(a)*.561,.095,.043,.095,i%2?pink:cyan);
+    const emitter=box(projector,Math.cos(a)*.561,.305,Math.sin(a)*.561,.075,.027,.075,i%2?metal:cyan);
     emitter.rotation.y=-a;
   }
   const beam = new T.Mesh(new T.CylinderGeometry(.71,.17,1.55,8,1,true),
@@ -252,9 +296,21 @@ export function createLab(scene) {
       new T.MeshBasicMaterial({map:texture,transparent,side,depthWrite:!transparent}));
     parent.add(surface);return surface;
   }
+  const legends=graphic(576,154,ctx=>{
+    const rows=['1234567890-+','QWERTYUIOP','ASDFGHJKL','ZXCVBNM'];
+    ctx.textAlign='center';
+    for(const [row,letters] of rows.entries()){
+      for(const [column,key] of [...letters].entries()){
+        label(ctx,key,38+column*31.0,30+row*30.8,row===0?pigments.pale:'#172239',13);
+      }
+    }
+  });
+  legends.draw();
+  const keyPrint=displayTexture(keyboard,legends.texture,2.95,.79,true);
+  keyPrint.position.set(0,.158,0);keyPrint.rotation.x=-Math.PI/2;
   function wings() {
-    const left=new T.Group();left.position.set(-4.21,2.07,-1.69);left.rotation.y=.26;scene.add(left);
-    const right=new T.Group();right.position.set(3.55,2.99,-1.85);right.rotation.y=-.26;scene.add(right);
+    const left=new T.Group();left.position.set(-4.97,2.07,-1.99);left.rotation.y=.26;scene.add(left);
+    const right=new T.Group();right.position.set(4.28,2.99,-2.37);right.rotation.y=-.26;scene.add(right);
     const glass = graphic(440,272,(ctx,{time,angle})=>{
       const cyanLine=pigments.cyan;
       label(ctx,'OPTICAL SCAN',25,36,cyanLine,23);
@@ -276,20 +332,30 @@ export function createLab(scene) {
       label(ctx,'PROJECTION',270,203,pigments.pink,14);
       rule(ctx,[[24,243],[171,243],[181,251],[416,251]],cyanLine,2);
     });
-    const acrylic=new T.Mesh(new T.PlaneGeometry(2.27,1.40),
-      new T.MeshBasicMaterial({color:'#00ccff',transparent:true,opacity:.099,side:T.DoubleSide,depthWrite:false}));
+    const acrylic=new T.Mesh(new T.BoxGeometry(2.27,1.40,.053),
+      new T.MeshPhysicalMaterial({color:'#54dfff',roughness:.16,clearcoat:1,transparent:true,opacity:.15,depthWrite:false}));
     left.add(acrylic);
     acrylic.renderOrder=4;
     const markings=displayTexture(left,glass.texture,2.23,1.37,true,T.DoubleSide);
-    markings.position.z=.013;markings.renderOrder=5;
-    for(const y of [-.699,.699])box(left,0,y,-.004,2.25,.026,.044,cyan);
+    markings.position.z=.032;markings.renderOrder=5;
+    for(const y of [-.699,.699]){
+      box(left,0,y,-.013,2.32,.047,.056,shell);
+      box(left,-.53,y,.023,1.07,.013,.016,cyan);
+    }
     for(const x of [-1.135,1.135]){
       box(left,x,0,0,.023,1.42,.029,mutedBlue);
       for(const side of [-1,1])box(left,x,side*.646,.012,.075,.10,.06,shell);
     }
-    link(scene,[-4.47,.06,-1.79],[-4.74,1.05,-1.79],.13,.23,trim);
-    link(scene,[-4.74,1.05,-1.79],[-4.60,1.38,-1.80],.12,.19,metal);
-    extrude(scene,chamfer(-4.50,-1.79,1.16,.69,.14),.024,.12,trim);
+    const foot=[-5.23,.12,-2.08],hinge=[-5.50,1.04,-2.22],head=[-5.36,1.39,-2.12];
+    link(scene,foot,hinge,.21,.14,trim);
+    link(scene,hinge,head,.17,.12,metal);
+    for(const [x,y,z] of [hinge,head]){
+      const joint=cylinder(scene,x,y,z,.105,.105,.22,shell,32);
+      joint.rotation.x=Math.PI/2;
+      box(scene,x,y,z+.113,.079,.025,.013,champagne);
+    }
+    extrude(scene,chamfer(foot[0],foot[2],1.16,.69,.14),.024,.12,trim);
+    for(const x of [-5.65,-4.82])fastener(scene,x,.193,-2.00,.022);
 
     const status=graphic(400,178,(ctx,{liftHeight,raised})=>{
       ctx.fillStyle=pigments.ink;ctx.fillRect(0,0,400,178);
@@ -307,12 +373,19 @@ export function createLab(scene) {
       label(ctx,'PROJECTING',222,132,pigments.cyan,16);
       rule(ctx,[[20,148],[380,148]],pigments.blue,2);
     });
-    box(right,0,0,0,2.44,1.16,.102,shell);
+    box(right,0,0,-.034,2.47,1.17,.080,shell);
+    box(right,0,0,.012,2.41,1.12,.048,gasket);
+    for(let i=0;i<12;i++)box(right,-.72+i*.123,.34,-.081,.050,.077,.014,trim);
+    for(const x of [-1.17,1.17])for(const y of [-.535,.535])box(right,x,y,.049,.034,.022,.008,metal);
     const screen=displayTexture(right,status.texture,2.33,1.038);
     screen.position.z=.059;
     box(right,.94,-.55,.063,.26,.028,.019,pink);
-    link(scene,[4.91,.06,-2.10],[4.94,2.38,-2.10],.152,.24,trim);
-    link(scene,[4.94,2.38,-2.10],[4.02,2.55,-1.92],.13,.19,shell);
+    const rightHinge=[5.65,2.33,-2.70];
+    link(scene,[5.57,.10,-2.72],rightHinge,.18,.24,trim);
+    link(scene,rightHinge,[4.75,2.60,-2.44],.14,.19,shell);
+    const joint=cylinder(scene,...rightHinge,.111,.111,.24,shell,32);
+    joint.rotation.x=Math.PI/2;
+    extrude(scene,chamfer(5.57,-2.72,.76,.78,.11),.012,.10,trim);
     return [glass,status];
   }
   const displays=wings();
@@ -330,19 +403,22 @@ export function createLab(scene) {
     label(ctx,'PROJECTION SIGNAL',310,188,pigments.cyan,15);
     rule(ctx,[[19,215],[542,215]],pigments.cyan,3);
   });
-  const panelX=.84,panelZ=-.36;
+  const panelX=.94,panelZ=-.86;
   extrude(scene,chamfer(panelX,panelZ,2.0,.99,.13),-.022,.054,trim,[],.012);
   const deskScreen=displayTexture(scene,deskGraphic.texture,1.86,.81);
   deskScreen.position.set(panelX,.048,panelZ);deskScreen.rotation.x=-Math.PI/2;
   box(scene,panelX,.053,panelZ+.475,1.45,.014,.031,cyan);
-  for(let i=0;i<5;i++)box(scene,.64+i*.105,.042,-.91,.049,.009,.055,i===0?lime:mutedBlue);
+  for(let i=0;i<5;i++)box(scene,panelX-.20+i*.105,.042,panelZ-.55,.049,.009,.055,i===0?lime:mutedBlue);
 
   // Low-profile platform for the actual portfolio model.
-  const slot=new T.Group();slot.position.set(2.89,.018,1.07);scene.add(slot);
+  const slot=new T.Group();slot.position.set(3.67,.018,1.52);scene.add(slot);
   extrude(slot,chamfer(0,0,1.59,1.47,.21),0,.07,trim,[],.028);
   extrude(slot,chamfer(0,0,1.37,1.27,.16),.082,.02,inset,[],.011);
   box(slot,0,.056,.734,1.16,.019,.021,pink);
-  for(const x of [-.61,.61])for(const z of [-.49,.49])box(slot,x,.11,z,.075,.009,.12,mutedBlue);
+  for(const x of [-.61,.61])for(const z of [-.49,.49]){
+    box(slot,x,.11,z,.075,.009,.12,mutedBlue);
+    fastener(slot,x,.098,z*1.21,.016);
+  }
 
   let previousDraw=-Infinity,previousMode;
   function update(state) {
