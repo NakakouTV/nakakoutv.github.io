@@ -1,0 +1,354 @@
+{
+  "checked": "2026-11-18",
+  "selection": {
+    "scratch": "公開53作品から閲覧数上位6作品と、Minecraft改良版・コンテスト入賞作品を掲載。",
+    "youtube": "チャンネルの「動画」タブの人気順で上位5本を掲載。各動画の公開ページで再生数を確認。"
+  },
+  "items": [
+    {
+      "id": "516590726",
+      "category": "Scratch",
+      "title": "Mochi mochi Slime【４】モチモチスライム4",
+      "thumbnail": "assets/works/516590726.png",
+      "url": "https://scratch.mit.edu/projects/516590726/",
+      "summary": "全3ステージの高難度アクション。PENで描く奥行きのあるブロックを、矢印キーやマウスで進みます。",
+      "views": 544193,
+      "description": "3ステージまであります。\nモチモチスライム6できました。\n製作者の記録\n187.77秒\n※激ムズ ←←←\n公開半日で傾向1ページ目に載りました！！\n9/22 日本傾向1位\n         英語圏傾向3ページ目\n         参照数20000突破\n         ver1.1に変更(めり込みバグの修正&音量調整)\n9/23 コミュニティーが好きなもの入り\n         コミュニティで現在リミックスされているもの入り\n        参照数40000突破\n9/24 参照数60000突破\n        日本傾向2位\n9/25 日本傾向1位\n        参照数80000突破\n9/26 参照数90000突破\n        日本傾向2位\n9/27 参照数110000突破\n        ver.1.2に変更\n　　　　当たり判定軽量化\n               中間地点追加\n9/28 傾向3位\n        参照数130000突破\n9/29 参照数160000突破\n        傾向11位\n9/30 参照数170000突破\n        傾向14位\n10/1 傾向22位\n        参照数180000突破\n10/2 傾向39位\n        参照数190000突破\n10/3 傾向3位\n        人気15位\n        参照数200000突破\n10/4 参照数210000突破\n10/5 参照数220000突破\n        傾向18位\n10/20 参照数300000突破\n　　  人気8位\n12/3 人気5位\n1/9 人気4位\n2/1 人気3位\n2/5 参照数400000突破\n4/1  人気外\n6/5 参照数450000突破\n2023/9/5 参照数500000突破\nbgm:魔王魂\n#Platformer #PEN #games",
+      "instructions": "←↑→ or マウスで操作で、Nキーで設定(You can operation ←↑→ key or mouse and \"N\" key is settings\n重い人はコチラ↓(Light version\nturbowarp.org/516590726\n最速記録(更新した場合はコメントお願いします。)\n@kouttakunn   86.883\nクリア者↓(先着20名 締め切り)\n@Crystal-25   \t195.691\n@yukito0501   187.787\n@AZITUKETAMAGO   1948.22\n@debixi_kasai   133.848\n@yossi-mann   672.012\n@Kuma-chan   1631.604\n@cats-cat-cats   975.712\n@go-han   1951.851\n@blizard4   1024.683\n@harupoo   1663.96\n@honoka789   245.19\n@katsuo777   1070.499\n@hoshihoshi1   1040.413\n@-kooku-   1168.893\n@s01h28n063   9794.774\n@mamack   2017.772\n@-_finally_cool_-   560.157\n@hukakuteiseigennri   686.3\n@-Slimy-   1858.626\n@rilakkuma4.  1621.75",
+      "source": "https://api.scratch.mit.edu/projects/516590726",
+      "checked": "2026-11-18",
+      "published": "2021-09-20",
+      "stats": {
+        "views": 544193,
+        "loves": 2643,
+        "favorites": 2460,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/516590726_480x360.png"
+    },
+    {
+      "id": "1030515703",
+      "category": "Scratch",
+      "title": "Mochi mochi Slime【6】モチモチスライム6 3D",
+      "thumbnail": "assets/works/1030515703.png",
+      "url": "https://scratch.mit.edu/projects/1030515703/",
+      "summary": "100% PENの3Dアクション。空間分割による描画順序の計算と、フックの法則を使ったキャラクター表現。",
+      "views": 134628,
+      "description": "♡100%PEN☆\nThe mechanics of this game are explained at the bottom.\nこのゲームの仕組みについては下部で説明しています。\nStage 1 reproduces 1-1 of Super Mario 3D Land.\nステージ1はSuper Mario 3D Landの1-1を再現しています。\nHSV to RGB\n@Toxic_Pepper\nhttps://scratch.mit.edu/projects/307662334/\nbgm:魔王魂\n\nIn this game k-d tree 3D Engine\n(https://scratch.mit.edu/projects/1002523637/) is used to calculate accurate drawing order using binary space partitioning.\nBinary search is used for collision detection and shadow drawing to reduce processing weight.\nThe characters have been improved from the previous work using Hooke's Law. If you have any technical questions, you can answer them on my profile or here.\n\nこのゲームではk-d tree 3D Engine\n(https://scratch.mit.edu/projects/1002523637/)を使用していて、バイナリ空間分割を使った正確な描画順序計算処理を行っています。\nしかし、キャラクターは動的物体となってしまうため正確に描画できません。直方体を組み合わせたキャラクターなら正確に描画できましたが、キャラクターのビジュアルを優先しました。\nキャラクターはフックの法則を使って前作よりリアルになるよう改良しました。当たり判定や影の描画は二分探索を使用して、処理を軽量化しています。\n技術的な質問であればプロフィールかこちらでお答えできます。\n8/28 参照数1万回突破 \nコミュニティーの好きな物に載る\n8/29 参照数2万回突破\n8/31 参照数3万回突破\nコミュニティーの好きな物がバグで見れない状態になる\n9/4 コミュニティーの好きな物外＆復活\nコミュニティで現在リミックスされているもの入り\n9/5 参照数5万回突破\n9/7 参照数6万回突破\n9/9 参照数7万回突破\n9/11 参照数8万回突破\n9/12 コミュニティで現在リミックスされているものがバグで見れなくなる\n9/17 参照数9万回突破\n12/12 参照数10万回突破\nbgm:魔王魂\n\n#Platformer #PEN #games",
+      "instructions": "PC: Move with WASD key, Jump with space key or V key\nMobile: Move with left finger, jump with right finger \nYou can wall kick by jumping on the wall \nN & P key are debug mode and operate it with wasd and arrow keys \nWASDキーで移動、スペースキーでジャンプ\nスマホ/タブレットは左指で移動、右指でジャンプ\n壁キックは壁でスペースキー\nN & P キーはデバッグモードでWASDキーと矢印キーで操作。\nMy time 45.46\n世界ランキング(World Ranking)\n@MixProgram 41.83\n@patrax6 42.83\n@kuriiiiii 43.66\n@SamStorm0148 43.68\n@running0520 44.16\n@Geotale 44.19\n@kuriiiiii 45.46\n@AkAEPICGAMER222 45.49\n@paytonjjpearce 45.71\n@SpinningCube 47.01\n@SpiritFallen1 47.16\n@Krispeey 52.80\n@kuriiiiii 53.28\n@cosutoko 55.21\n@IRV_GAMES 55.79\n@mizu6 55.909\n@paytonjjpearce 56.05\n@ObviousCoder 56.39\n@T_T-KT 56.47\n@Ttro-FX 56.65\n@Seer1889 56.93\n@ModBros 57.54\n@Krispeey 57.63\n@ALPHA-305 58.5\n@ModBros 59.21\n@FunnyAnimatorJimTV 60.43\n@SeaKing0001 60.55\n@luka_vert 62.18\n@KZUKNA 63.22\n@AkAEPICGAMER222 63.98\n@aceapple0104 65.38\n@BoadesnakeRekts 65.89\n@tententenma627 66.67\n@ggenije 69.56",
+      "source": "https://api.scratch.mit.edu/projects/1030515703",
+      "checked": "2026-11-18",
+      "published": "2024-08-24",
+      "stats": {
+        "views": 134628,
+        "loves": 4099,
+        "favorites": 3690,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/1030515703_480x360.png"
+    },
+    {
+      "id": "882647007",
+      "category": "Scratch",
+      "title": "Mochi Mochi Slime Maker モチモチスライム",
+      "thumbnail": "assets/works/882647007.png",
+      "url": "https://scratch.mit.edu/projects/882647007/",
+      "summary": "モチモチスライムのコースを作って遊べるMaker。自分で作ったステージを公開できる作品です。",
+      "views": 112010,
+      "description": "The mechanics of this game are explained at the bottom.\nこのゲームの仕組みについては下部で説明しています。\nランキング(World Ranking)<200\n@crab312 56.34\n@sunboy3389 58.10\n@MixProgram\t59.85\n@sunboy3389 67.349\n@SamStorm0148 69.50\n@debixi_kasai\t71.45\n@Codeur-Z 76.51\n@TutoeTurtle 81.27\n@basekooo 87.75\n@sunboy3389\t89.15\n@artist-foxy43 92.80\n@tankmanwithoutagun 95.00\n@hartmmac0 111.91\n@paytonjjpearce 113.92\n@Soh2023 115.99\n@Ttro-FX 117.11\n@kwuiu 117.534\n@-hiyoko_piyopiyo- 123.44\n@rillybog2 125.28\n@tankmanwithoutagun 129.68\n@kansei10110 133.38\n@Lifeeisroblox 140.48\n@duhsonic_321567 140.59\n@GoldenPig64 144.48\n@Mario-Hit-Kirby 146.13\n@4183992 148.94\n@artist-foxy43 150.28\n@SpinningCube 157.65\n@basekooosubsub 157.68\n@Was-Rid 158.10\n@dgekkjtaTogo 162.05\n@Red_Dragon_Of_China 165.52\n@artist-foxy43 166.25\n@BenjiNg2024 167.48\n@duhsonic_321567 168.92\n@tanakatarou_0118 186.85\n@basekooo 189.23\n@iyahhoi 189.54\nHSV to RGB\n@Toxic_Pepper\nhttps://scratch.mit.edu/projects/307662334/\nbgm:魔王魂\n\nこのゲームはMochiMochiSlime6 https://scratch.mit.edu/projects/1030515703/ を元に作成し、コースを編集できる機能を追加した作品です。\n仕組み\nこの作品は描画順序を軽量版バイナリ空間分割で計算し、頂点計算数が少ない高速直方体描画処理を行っています。初期処理はO(N^3)ですが、データ構造が二分探索木で構成されているため、描画順序計算処理はO(N)、当たり判定と影描画処理はO(logN)という計算量となっています。\n具体的に説明すると、軽量版バイナリ空間分割はx,y,z軸に平行な面で分割することによって軽量な描画順序計算処理をして、さらに平衡二分探索木に近い形によって描画順序計算処理や当たり判定、影の描画位置の計算、の処理量を減らすようにしています。\nそして、高速直方体描画はベクトル計算により処理を簡略化して、従来の直方体描画で計算していた36個の頂点を8個に減らしています。また、バックフェースカリングの処理を直方体の面がx,y,z軸に平行な特性を使って軽量化しています。\n技術的な質問であればプロフィールかこちらでお答えできます。\nMechanism\nThis work calculates the drawing order using a lightweight binary space partitioning, and performs high-speed rectangular parallelepiped drawing processing with fewer vertex calculations. The initial processing is O(N^3), but because the data structure is composed of a binary search tree, the drawing order calculation process is O(N), and the collision detection and shadow drawing processes are O(logN).\nTo be more specific, the lightweight binary space partitioning performs lightweight drawing order calculation processing by dividing on planes parallel to the x, y, and z axes, and further reduces the amount of processing for drawing order calculation processing, collision detection, and shadow drawing position calculation by using a form close to a balanced binary search tree.\nAnd the high-speed rectangular parallelepiped drawing simplifies the processing by using vector calculations, reducing the number of vertices calculated in conventional rectangular parallelepiped drawing to 8. In addition, the backface culling process is made lighter by using the property that the faces of the rectangular parallelepiped are parallel to the x, y, and z axes.\nIf you have any technical questions, you can answer them in my profile or here.\n\n12/9 傾向1P コミュニティの好きなもの \n　　 参照数1万突破\n12/10 バグにより傾向とコミュ好きから削除\n　　　参照数2万突破\n12/11 参照数3万回突破\n12/12 参照数4万回突破\n　　　傾向1Pに復活\n12/13 傾向から削除\n           参照数5万回突破\n12/14 傾向1Pに復活\n12/15 参照数6万回突破\n12/17 傾向が見えなくなる\n12/18 傾向復活\n12/20 傾向に復活\n12/21 傾向が見えなくなる 参照数7万回突破\n  3/19 人気欄\n  7/5   人気外",
+      "instructions": "日本語の説明は英語の後にあります。\nThe Japanese explanation is after the English.\nMove with WASD keys, jump with Space key or V key\nMove with left finger on smartphone/tablet, jump with right finger\nFor wall kick, press space key on wall\nP key and 2 key are debug mode\n1 key is course creation mode\nHow to create a course below\nIf you remix the course after editing it, you can post the course you created.\nDelete with M key, place with space key\nChange perspective with IKJLUO\nBlock change with RF key\nChange block size with ZX key\nPressing the spacebar while touching a block will snap to the block.\nCopy with C key, paste with V key\nHold Y and press green flag to remove all blocks\nSwitch stage data display with T key\nSnap with H key\nWASDキーで移動、スペースキーまたはVキーでジャンプ\nスマホ/タブレットは左指で移動、右指でジャンプ\n壁キックは壁でスペースキー\nPと2 キーはデバッグモード\n1キーはコース作成モード\n以下コース作成の操作方法\nコースを編集した状態でremixすると自分で作ったコースを投稿できます。\nMキーで削除,スペースキーで配置\nIKJLUOで視点変更\nRFキーでブロック変更\nZXキーでブロックの大きさ変更\nブロックに触れている状態でスペースキーを押すとブロックにスナップする\nCキーでコピー,Vキーでペースト\nYキーを押しながら緑の旗を押すとすべてのブロックを削除\nTキーでステージデータの表示切り替え\nHキーでスナップ\n\nTurboWarp\nhttps://turbowarp.org/882647007?fps=60&hqpen\nremix projects\nhttps://scratch.mit.edu/studios/36030735",
+      "source": "https://api.scratch.mit.edu/projects/882647007",
+      "checked": "2026-11-18",
+      "published": "2024-12-08",
+      "stats": {
+        "views": 112010,
+        "loves": 3039,
+        "favorites": 2803,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/882647007_480x360.png"
+    },
+    {
+      "id": "496260365",
+      "category": "Scratch",
+      "title": "3D Minecraft Ver.1.1 (マインクラフト風サンドボックスゲーム)",
+      "thumbnail": "assets/works/496260365.png",
+      "url": "https://scratch.mit.edu/projects/496260365/",
+      "summary": "ScratchのPENでつくった3Dサンドボックス。ブロックを壊したり設置したりして建築を楽しめます。",
+      "views": 104984,
+      "description": "↓動作が軽いバージョン(Its not lag)↓\nhttps://turbowarp.org/496260365?hqpen\nこの作品の解説動画（前編）\nhttps://scratch.mit.edu/discuss/youtube/xW8KADTbpvs\n3D Minecraft Ver.2.1\nhttps://scratch.mit.edu/projects/517100829/\n\nver.1.1　距離の近いブロックの描画バグの修正\n　　　描画範囲などの設定方法の改良\n#Game #3D #PEN #Minecraft #nakakoutv",
+      "instructions": "(English information is down)\nwasdキーで移動、←↑→キーかマウスで視点操作、EキーかMキーでブロックを壊す。QキーかKキーでブロック設置、fキーかNキーでブロックの色変更、Lキーでステージ読み込み、スペースキーでジャンプ\n建造物を作ってリミックスするとそのままのデータでプレイできます。\n←↑→/mouse - rotating, 'WASD' - moving, 'E'/'M' - Break a block, 'Q'/'K' - Put a block, 'F'/'N' - Change Color,  'L' - Load stage, 'space' - jump\nIf you make a building and remix it, you can play with the data as it is\nI am 16 years old and Japanese.\n16歳のころに作った作品です。",
+      "source": "https://api.scratch.mit.edu/projects/496260365",
+      "checked": "2026-11-18",
+      "published": "2021-03-20",
+      "stats": {
+        "views": 104984,
+        "loves": 582,
+        "favorites": 582,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/496260365_480x360.png"
+    },
+    {
+      "id": "618491769",
+      "category": "Scratch",
+      "title": "Mochi mochi slime【5】モチモチスライム5",
+      "thumbnail": "assets/works/618491769.png",
+      "url": "https://scratch.mit.edu/projects/618491769/",
+      "summary": "3ステージのモチモチスライム第5作。Vキーでブロックを半透明にしながら、ゴールを目指します。",
+      "views": 75602,
+      "description": "3ステージまであります。\n製作者の記録\n103.126秒\nモチスライム【４】↓\nhttps://scratch.mit.edu/projects/516590726\nbgm:魔王魂\n当たり判定を難しくて軽い処理にしたため少々バグがありますが大目に見てください;\n12/26 300参照突破\n12/27 傾向2ページ目　2000参照突破\n12/28 傾向2位 サムネイルがGifのまま傾向に載ったのがダメだったらしく報告により共有停止 5000参照突破\n12/29 共有再開\n\n#Platformer #PEN #games #all",
+      "instructions": "←↑→ or マウスで操作で、(You can operation ←↑→ key or mouse\nVキーでブロックを半透明化\n重い人はコチラ↓(Light version)\nhttps://turbowarp.org/618491769?interpolate&hqpen\nTop3\n@teeeeeeen   56.826\n@meron0gou   65.803\n@Huhies   70.586\nクリア者↓(先着15名終了)\n@Crystal-25   173.018\n@qamina31   \t90.355\n@meron0gou   65.803\n@CitrinN   238.846\n@betelgeuse_17y   832.326\n@kou88   722.568\n@KOUYA_   857.637\n@zawamori   \t71.48\n@wahahanoha   937.234\n@poteto89   \t104.916\n@kanasou   859.387\n@kingrabbit10   170.286\n@supk202   75.9\n@teeeeeeen   62.285\n@uki111   115.431",
+      "source": "https://api.scratch.mit.edu/projects/618491769",
+      "checked": "2026-11-18",
+      "published": "2021-12-28",
+      "stats": {
+        "views": 75602,
+        "loves": 588,
+        "favorites": 558,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/618491769_480x360.png"
+    },
+    {
+      "id": "409640580",
+      "category": "Scratch",
+      "title": "3D Platformer モチモチスライム【2】！！ 100%PEN （スマホ対応）",
+      "thumbnail": "assets/works/409640580.png",
+      "url": "https://scratch.mit.edu/projects/409640580/",
+      "summary": "100% PENの3Dスクロールゲーム。迫りくる壁や追いかけてくる悪魔を避け、青いゴールへ。",
+      "views": 67775,
+      "description": "Mochi mochi Slime【2】\n2020年8月17日共有\n8月22日タイマー追加\n8月24日流行入り1ページ目\n9月9日参照数10000突破！\n\nモチモチスライム１↓\nhttps://scratch.mit.edu/projects/414780954/\n\nクラウドデータ故障中なのでクリアしたらコメントお願いします。\n\nプラットフォーマーで他とは違うものを追求していくうちにこの作品ができました。\nアドバイスや感想、プログラムについての質問があればコメントしてください。\nプログラムを参考にする場合は記載かリミックスお願いします。\n流行1ページ目にのれたのは嬉しいが目標はもっと上だ！\n\n\n新ギミック\n・迫りくる壁\n・追いかけてくる悪魔\n\n\n音楽↓\n魔王魂\nhttps://maoudamashii.jokersounds.com/\n\n#games\n#3D\n#Platformer\n#もっちもちぃ\n#モッチモチ\n#もっちもちー\n#モチモチスライム",
+      "instructions": "100% PEN 3D Scroll Game!!  ♡☆\n青色がゴール。\n赤色に触れたらリスタート。\n矢印キーまたはマウスorタップで操作。\n製作者の記録は92.204秒です。\nクリア者↓（先着10名　もう締め切り）\n\n@sugisan\n@Mineshokunn\n@tomarunjyaneezo\n@qurlay\n@knt2011\n@purple-yellow-orange\n@262104HI\n@tetudoutomoya\n@yuhaku\n@k11so100",
+      "source": "https://api.scratch.mit.edu/projects/409640580",
+      "checked": "2026-11-18",
+      "published": "2020-08-17",
+      "stats": {
+        "views": 67775,
+        "loves": 554,
+        "favorites": 529,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/409640580_480x360.png"
+    },
+    {
+      "id": "517100829",
+      "category": "Scratch",
+      "title": "3D Minecraft Ver.2.2 (マインクラフト風サンドボックスゲーム) ",
+      "thumbnail": "assets/works/517100829.png",
+      "url": "https://scratch.mit.edu/projects/517100829/",
+      "summary": "3D Minecraftの改良版。処理を軽量化し、60fpsに対応。Zキーでブロック操作を元に戻せます。",
+      "views": 38394,
+      "description": "↓動作が軽いバージョン(Its not lag)60fps↓\nhttps://turbowarp.org/517100829?hqpen&fps=60\n↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\nこの作品の解説動画↓（前編）\nhttps://scratch.mit.edu/discuss/youtube/xW8KADTbpvs\n変更した仕様\n・Zキーで元に戻す\n・フレームレート60に対応\n・初期マップの変更\n・慣性の仕様の変更\nver.2.1 描画範囲拡張バグを使い軽量化\nver 2.2 処理の軽量化\n\n#Game #3D #PEN #Minecraft #nakakoutv",
+      "instructions": "(English information is down)\nwasdキーで移動、←↑→キーかマウスで視点操作、EキーかMキーでブロックを壊す。QキーかKキーでブロック設置、fキーかNキーでブロックの色変更、Lキーでステージ読み込み、スペースキーでジャンプ\nZキーでブロックを元に戻す。\n建造物を作ってリミックスするとそのままのデータでプレイできます。\n←↑→/mouse - rotating, 'WASD' - moving, 'E'/'M' - Break a block, 'Q'/'K' - Put a block, 'F'/'N' - Change Color,  'L' - Load stage, 'space' - jump,  'Z' - Undo\nIf you make a building and remix it, you can play with the data as it is\nI am 16 years old and Japanese.\n16歳のころに作った作品です。",
+      "source": "https://api.scratch.mit.edu/projects/517100829",
+      "checked": "2026-11-18",
+      "published": "2021-04-17",
+      "stats": {
+        "views": 38394,
+        "loves": 440,
+        "favorites": 420,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/517100829_480x360.png"
+    },
+    {
+      "id": "667093962",
+      "category": "Scratch",
+      "title": "Entry for t9decode 100% PEN イントロ",
+      "thumbnail": "assets/works/667093962.png",
+      "url": "https://scratch.mit.edu/projects/667093962/",
+      "summary": "100% PENの3Dイントロ。視点変更用のNキーを残した、コンテスト同率優勝作品。",
+      "views": 29630,
+      "description": "music https://scratch.mit.edu/discuss/youtube/FE2GQB37G1A\n",
+      "instructions": "100%PEN Intro\nFPS independence\n5956blocks\n\"N\"key?\n↑制作に必要なプログラムだったので残しておきました。\n\nhttps://turbowarp.org/667093962?fps=250&hqpen\n\nコンテストで同率優勝しました！\nhttps://scratch.mit.edu/projects/679802103/",
+      "source": "https://api.scratch.mit.edu/projects/667093962",
+      "checked": "2026-11-18",
+      "published": "2022-04-17",
+      "stats": {
+        "views": 29630,
+        "loves": 2395,
+        "favorites": 2211,
+        "remixes": 0
+      },
+      "source_thumbnail": "https://cdn2.scratch.mit.edu/get_image/project/667093962_480x360.png"
+    },
+    {
+      "id": "PkOeKdcEXws",
+      "category": "YouTube",
+      "tags": [
+        "YouTube"
+      ],
+      "title": "Scratchで3Dゲームを作ってみた",
+      "thumbnail": "assets/works/PkOeKdcEXws.jpg",
+      "url": "https://www.youtube.com/watch?v=PkOeKdcEXws",
+      "summary": "モチモチスライムの3Dゲーム制作を解説。ポリゴン・直方体の描画から、プレーヤーやスライムの動きまで。",
+      "views": 143028,
+      "description": "Scratchでモチモチスライムという3Dゲームを作りました。\n\n0:00 イントロ\n0:47 完成目標\n1:19 3Dポリゴン描画\n2:27 高速な直方体描画\n3:26 複数描画時の問題\n4:39 画期的な処理方法\n5:50 プレーヤーの描画\n6:22 プレーヤーの動き\n7:30 スライム\n9:31 エンディング\n\n資料 1,2\nhttps://1drv.ms/b/c/aa67873f19824563/Ee56fMdQ2b1OouT_FnIPvD8B8kjA9cAoIkVJkA3hIyEThw?e=sFEb76\n\n制作したゲーム\nhttps://scratch.mit.edu/projects/1030515703/\n改良版\nhttps://scratch.mit.edu/projects/882647007/\n制作されたコース\nhttps://scratch.mit.edu/studios/36030735/\n\n効果音↓\n効果音ラボ\nhttps://soundeffect-lab.info/sound/button/\n音楽・効果音\nhttps://dova-s.jp/\n声\naivisspeech anneli",
+      "instructions": "",
+      "source": "https://www.youtube.com/watch?v=PkOeKdcEXws",
+      "checked": "2026-11-18",
+      "duration_seconds": 602,
+      "published": "2025-04-12",
+      "source_thumbnail": "https://i.ytimg.com/vi/PkOeKdcEXws/maxresdefault.jpg"
+    },
+    {
+      "id": "pwBZAH-Vdl8",
+      "category": "YouTube",
+      "tags": [
+        "YouTube",
+        "LEGO"
+      ],
+      "title": "レゴのからくり金庫20回仕掛けの作り方～",
+      "thumbnail": "assets/works/pwBZAH-Vdl8.jpg",
+      "url": "https://www.youtube.com/watch?v=pwBZAH-Vdl8",
+      "summary": "20回仕掛けのLEGOからくり金庫の作り方。組み立て解説は2分17秒から。",
+      "views": 40994,
+      "description": "レゴのからくり金庫20回仕掛けの作り方動画です。\n雑談多めなので作り方のみ見たい方は2:17あたりから見ることをおススメします。\n\n効果音↓\n効果音ラボ\nhttps://soundeffect-lab.info/sound/button/\n音楽・効果音\nhttps://dova-s.jp/\n\nVlog No Copyright Music\nhttps://www.youtube.com/channel/UCEickjZj99-JJIU8_IJ7J-Q\nフリー音楽素材/魔王魂↓\nhttps://maoudamashii.jokersounds.com/\nかまたまご↓\nhttps://kamatamago.com/",
+      "instructions": "",
+      "source": "https://www.youtube.com/watch?v=pwBZAH-Vdl8",
+      "checked": "2026-11-18",
+      "duration_seconds": 335,
+      "published": "2021-05-28",
+      "source_thumbnail": "https://i.ytimg.com/vi/pwBZAH-Vdl8/maxresdefault.jpg"
+    },
+    {
+      "id": "xW8KADTbpvs",
+      "category": "YouTube",
+      "tags": [
+        "YouTube"
+      ],
+      "title": "Scratchで本気でMinecraft作ったので解説【前編】",
+      "thumbnail": "assets/works/xW8KADTbpvs.jpg",
+      "url": "https://www.youtube.com/watch?v=xW8KADTbpvs",
+      "summary": "Scratch製3D Minecraftの技術解説。三角形の塗りつぶし、座標変換、遠近法、画面外の頂点補正を紹介。",
+      "views": 37198,
+      "description": "Scratchというプログラミングのサイトで作ってみました。\n3D Minecraft↓\nhttps://scratch.mit.edu/projects/496260365/\n中編\nhttps://www.youtube.com/watch?v=A8MTqsAvxpQ\n※スラウンド型は適当につけた名前です。\n\n0:00　はじめに\n0:24　Chapter一覧\n0:41　Chapter1　三角形を塗りつぶす\n1:18　Chapter2　カメラの向きから物体の座標を変換\n2:15　Chapter3　奥行きによりxy座標を計算する\n3:18　Chapter4　カメラの領域外の頂点の補正\n4:30　さいごに\n\n効果音↓\n効果音ラボ\nhttps://soundeffect-lab.info/sound/button/\n音楽・効果音\nhttps://dova-s.jp/\n\nVlog No Copyright Music\nhttps://www.youtube.com/channel/UCEickjZj99-JJIU8_IJ7J-Q\nフリー音楽素材/魔王魂↓\nhttps://maoudamashii.jokersounds.com/\nかまたまご↓\nhttps://kamatamago.com/\n#Minecraft #Scratch #プログラミング",
+      "instructions": "",
+      "source": "https://www.youtube.com/watch?v=xW8KADTbpvs",
+      "checked": "2026-11-18",
+      "duration_seconds": 309,
+      "published": "2021-03-24",
+      "source_thumbnail": "https://i.ytimg.com/vi/xW8KADTbpvs/maxresdefault.jpg"
+    },
+    {
+      "id": "kK-JwakMWvM",
+      "category": "YouTube",
+      "tags": [
+        "YouTube",
+        "LEGO"
+      ],
+      "title": "レゴ からくり金庫 18回仕掛け を作った！！18moves",
+      "thumbnail": "assets/works/kK-JwakMWvM.jpg",
+      "url": "https://www.youtube.com/watch?v=kK-JwakMWvM",
+      "summary": "LEGOで作った18回仕掛けのからくり金庫を紹介します。",
+      "views": 18621,
+      "description": "LEGOでからくり金庫 を作ってみました！\n\nオープニングで編集が燃え尽きました...\nこれからはおそらく動画の投稿頻度を維持するためにテロップを減らしたりオープニングを毎回変えるのをやめたりするかもです。\n理由としては学校の勉強ももちろんなのですが、自分にはたくさんの趣味があり、動画を撮ってると時間が足りなくなってしまいます。また、最近はPythonというプログラミング言語の勉強やピアノの練習なども始めたため、以前よりもさらに時間が足りなくなると思います。\nそれらのバランスをうまくとりながら動画投稿をしていきたいと思います！\n\n前のからくり箱\nhttps://youtu.be/6uYc0gyff3c\n\n効果音↓\n効果音ラボ\nhttps://soundeffect-lab.info/sound/button/\n音楽・効果音↓\nhttps://dova-s.jp/\nフリー音楽素材/魔王魂↓\nhttps://maoudamashii.jokersounds.com/\nかまたまご↓\nhttps://kamatamago.com/\n\n#レゴ #金庫#からくり箱#puzzlebox#からくり金庫#秘密箱",
+      "instructions": "",
+      "source": "https://www.youtube.com/watch?v=kK-JwakMWvM",
+      "checked": "2026-11-18",
+      "duration_seconds": 383,
+      "published": "2020-10-31",
+      "source_thumbnail": "https://i.ytimg.com/vi/kK-JwakMWvM/maxresdefault.jpg"
+    },
+    {
+      "id": "mNjxrJc80Wg",
+      "category": "YouTube",
+      "tags": [
+        "YouTube"
+      ],
+      "title": "ScratchでBad Appleを再現した方法 技術解説",
+      "thumbnail": "assets/works/mNjxrJc80Wg.jpg",
+      "url": "https://www.youtube.com/watch?v=mNjxrJc80Wg",
+      "summary": "Bad Apple!!のMVをScratchで再現。その制作方法を解説する動画です。",
+      "views": 15836,
+      "description": "ScratchでBad Apple!! feat.nomico の mvを再現しました。\n今回の動画は技術解説です。\n\nお借りした作品\nsly_i\nhttps://scratch.mit.edu/projects/1269789650/\n\npasuwado123\nhttps://scratch.mit.edu/projects/1279977570/\n\nKonjac_rice\nhttps://scratch.mit.edu/projects/1278527676/\n\n効果音↓\n効果音ラボ\nhttps://soundeffect-lab.info/sound/button/\n音楽・効果音\nhttps://dova-s.jp/\n\nフリー音楽素材/魔王魂↓\nhttps://maoudamashii.jokersounds.com/",
+      "instructions": "",
+      "source": "https://www.youtube.com/watch?v=mNjxrJc80Wg",
+      "checked": "2026-11-18",
+      "duration_seconds": 501,
+      "published": "2026-03-11",
+      "source_thumbnail": "https://i.ytimg.com/vi/mNjxrJc80Wg/maxresdefault.jpg"
+    }
+  ],
+  "channel": {
+    "name": "ナカコウ",
+    "url": "https://www.youtube.com/channel/UCA5Wz1U__MBSSEGafoiMfaQ",
+    "subscribers": 2310,
+    "subscriber_display": "2.31K subscribers",
+    "videos": 45,
+    "views": 428441,
+    "checked": "2026-11-18"
+  },
+  "repositories": [
+    {
+      "name": "CtrlLauncher",
+      "language": "C#",
+      "description": "ゲーム展示会で複数のWindowsゲームを選んで起動するWPFランチャー。",
+      "html_url": "https://github.com/NakakouTV/CtrlLauncher",
+      "pushed_at": "2026-10-21T04:53:31Z",
+      "files": [
+        {
+          "label": "ランチャーの構成",
+          "url": "https://github.com/NakakouTV/CtrlLauncher/blob/main/CtrlLauncher/docs/ARCHITECTURE.md"
+        },
+        {
+          "label": "ソースコード",
+          "url": "https://github.com/NakakouTV/CtrlLauncher/tree/main/CtrlLauncher"
+        }
+      ]
+    },
+    {
+      "name": "scratch-movie-studio",
+      "language": "JavaScript",
+      "description": "Scratchの作品ファイルから制作手順を読み取り、公式エディター上で組み立てる解説動画の制作ツール。",
+      "html_url": "https://github.com/NakakouTV/scratch-movie-studio",
+      "pushed_at": "2026-10-16T16:33:24Z",
+      "files": [
+        {
+          "label": "解説動画の構成",
+          "url": "https://github.com/NakakouTV/scratch-movie-studio/blob/main/docs/presentation.md"
+        },
+        {
+          "label": "動作確認用の作品",
+          "url": "https://github.com/NakakouTV/scratch-movie-studio/blob/main/PEN%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D.sb3"
+        }
+      ]
+    },
+    {
+      "name": "rotational-bounding-box-mask-packing",
+      "language": "Python",
+      "description": "Scratchで1枚のSVGから特定の画像だけをスタンプする実験。論文、デモ作品、検証データを公開。",
+      "html_url": "https://github.com/NakakouTV/rotational-bounding-box-mask-packing",
+      "pushed_at": "2026-10-03T04:34:09Z",
+      "files": [
+        {
+          "label": "論文 PDF",
+          "url": "https://github.com/NakakouTV/rotational-bounding-box-mask-packing/blob/main/%E6%88%90%E6%9E%9C%E7%89%A9/%E8%AB%96%E6%96%87/RBMP_%E5%9B%9E%E8%BB%A2%E5%A2%83%E7%95%8C%E3%83%9E%E3%82%B9%E3%82%AF%E3%83%91%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0_nakakoutv.pdf"
+        },
+        {
+          "label": "デモ作品",
+          "url": "https://github.com/NakakouTV/rotational-bounding-box-mask-packing/tree/main/%E6%88%90%E6%9E%9C%E7%89%A9"
+        },
+        {
+          "label": "検証結果",
+          "url": "https://github.com/NakakouTV/rotational-bounding-box-mask-packing/tree/main/%E6%A4%9C%E8%A8%BC%E7%B5%90%E6%9E%9C"
+        }
+      ]
+    },
+    {
+      "name": "nakakoutv.github.io",
+      "language": "HTML",
+      "description": "ホームページのHTMLと画像を公開しているリポジトリ。",
+      "html_url": "https://github.com/NakakouTV/nakakoutv.github.io",
+      "pushed_at": "2022-12-09T04:40:12Z",
+      "files": [
+        {
+          "label": "トップページのソース",
+          "url": "https://github.com/NakakouTV/nakakoutv.github.io/blob/main/index.html"
+        }
+      ]
+    }
+  ],
+  "repositories_checked": "2026-11-18"
+}
