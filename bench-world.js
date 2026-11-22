@@ -62,10 +62,17 @@ export function createWorkbench(stage) {
   const wall=new T.MeshStandardMaterial({color:0x262640,roughness:.9});
   const darkWall=new T.MeshStandardMaterial({color:0x181c32,roughness:.9});
   const bluePixel=new T.MeshBasicMaterial({color:0x1870a8});
+  const conduit=new T.MeshStandardMaterial({color:0x34465b,roughness:.64,metalness:.22});
   for(let i=0;i<10;i++){
     const x=-11.7+i*2.6,height=4.1+(i%4)*.61;
     box(corridor,x,height/2-1.9,-8.4,2.18,height,.27,i%3===1?wall:darkWall);
     box(corridor,x,height-1.9,-8.247,1.99,.038,.027,trim);
+    box(corridor,x-1.06,height/2-1.9,-8.20,.06,height,.10,conduit);
+    box(corridor,x,.84,-8.10,1.79,1.50,.19,darkWall);
+    for(let vent=0;vent<5;vent++){
+      box(corridor,x,.34+vent*.19,-7.99,1.50,.04,.045,conduit);
+    }
+    box(corridor,x+.72,1.52,-7.96,.13,.043,.018,i%3===0?cyan:bluePixel);
     for(let row=0;row<3;row++)for(let col=0;col<4;col++){
       if((i*11+row*7+col*3)%7<4)continue;
       box(corridor,x-.68+col*.40,.49+row*.39,-8.247,.17,.065,.021,(row+col+i)%6===0?bluePixel:trim);
@@ -73,6 +80,27 @@ export function createWorkbench(stage) {
   }
   box(corridor,0,4.47,-8.23,24,.048,.093,trim);
   box(corridor,-5.3,4.47,-8.171,5.4,.025,.02,bluePixel);
+  for(const side of [-1,1]){
+    const x=side*6.32;
+    const rack=new T.Group();
+    rack.position.set(x,-2.69,-3.08);
+    rack.rotation.y=-side*.13;scene.add(rack);
+    box(rack,0,.17,0,1.52,.28,1.42,trim);
+    for(const post of [-.68,.68]){
+      box(rack,post,1.52,-.44,.12,2.9,.13,shell);
+      box(rack,post,1.52,.39,.072,2.9,.104,trim);
+    }
+    for(let shelf=0;shelf<3;shelf++){
+      const y=.31+shelf*.78;
+      box(rack,0,y,0,1.40,.08,1.10,trim);
+      for(let part=0;part<3;part++){
+        const position=-.46+part*.459;
+        box(rack,position,y+.24,-.045,.37,.38,.66,part===1?wall:conduit);
+        box(rack,position,y+.235,.294,.225,.03,.013,shelf===2&&part===1?cyan:bluePixel);
+        box(rack,position,y+.16,.294,.17,.036,.015,darkWall);
+      }
+    }
+  }
 
   const project=new T.Group();slot.add(project);
   const backdrop = document.getElementById('project-details');
@@ -81,6 +109,7 @@ export function createWorkbench(stage) {
   let available=false, focused=false, paused=false, dirty=true, inspection=false;
   const home={theta:.08,phi:1.16,radius:12.05,target:new T.Vector3(0,.85,-.26)};
   let {theta,phi,radius}=home;
+  let framing=1;
   let liftRaised=true,liftHeight=.62,elapsed=0,lastFrame=0;
   const target=home.target.clone(), current=new T.Vector3(), look=new T.Vector3();
   const projectCenter=new T.Vector3(2.89,.52,1.07);
@@ -116,6 +145,7 @@ export function createWorkbench(stage) {
   }).catch(()=>{document.getElementById('project-status').hidden=false});
   function setInspection(value){
     inspection=value;backdrop.hidden=!value;
+    stage.classList.toggle('inspecting',value);
     target.copy(value?projectCenter:home.target);
     theta=value?.63:home.theta;phi=value?1.12:home.phi;radius=value?2.95:home.radius;
     dirty=true;
@@ -169,7 +199,17 @@ export function createWorkbench(stage) {
     if(Math.abs(liftHeight-liftDestination)<.002)liftHeight=liftDestination;
     lab.update({time:elapsed,angle:theta,liftHeight,raised:liftRaised,inspection});
     const aspect=camera.aspect;
-    const distance=radius*Math.max(1,(inspection?.74:1.31)/aspect);
+    const width=stage.clientWidth,height=stage.clientHeight;
+    const wide=width>800&&width>height;
+    const indexVisible=wide||height>520;
+    const desiredFraming=!inspection&&indexVisible?1:0;
+    framing=T.MathUtils.lerp(framing,desiredFraming,paused?1:.19);
+    const indexWidth=Math.min(346,Math.max(260,width*.24));
+    const offsetX=wide?-indexWidth*.48*framing:0;
+    const offsetY=wide?25*framing:height*.10*framing;
+    camera.setViewOffset(width,height,offsetX,offsetY,width,height);
+    const extraRoom=wide?1+framing*.24:1;
+    const distance=radius*extraRoom*Math.max(1,(inspection?.74:1.31)/aspect);
     aim.setFromSphericalCoords(distance,phi,theta).add(target);
     const amount=paused?1:.18;
     current.lerp(aim,amount);look.lerp(target,amount);
@@ -177,7 +217,7 @@ export function createWorkbench(stage) {
     corridor.visible=camera.position.z>-19.6;
     optics.render(scene,camera);
     projectScreen();
-    dirty=current.distanceToSquared(aim)+look.distanceToSquared(target)>.00001;
+    dirty=current.distanceToSquared(aim)+look.distanceToSquared(target)>.00001||Math.abs(framing-desiredFraming)>.001;
   }
   const canvas=renderer.domElement;
   let drag;

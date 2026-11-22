@@ -88,6 +88,15 @@ profile = section('profile','プロフィール',f'''<div class="profile-head"><
 friends = [('1998氏','https://1998ky262.github.io/'),('haru-ymth','https://haruymth.github.io/'),('kobakoo','https://www.kobakoo.com/')]
 links = section('links', '相互リンク', '<div class="friends">'+''.join(f'<a href="{url}" target="_blank" rel="noopener"><strong>{name}</strong><span>{url.split("//")[1].rstrip("/")}</span><b>↗</b></a>' for name,url in friends)+'</div><p>相互リンクのご連絡は '+link('https://x.com/nakakoutv','XのDM')+' へ。</p>')
 menu = ''.join(f'<a href="#{key}">{icon(key)}<span>{name}</span></a>' for key,name in apps.items())
+picks = {"516590726": ("Scratch・3Dアクション", "モチモチスライム 4"),
+         "PkOeKdcEXws": ("YouTube・制作解説", "Scratchで3Dゲームを作ってみた")}
+portfolio_picks = []
+by_id = {item["id"]: item for item in items}
+for key, (category, name) in picks.items():
+    item = by_id[key]
+    portfolio_picks.append(f'''<a href="#work-{key}">
+      <img src="{escape(item['thumbnail'])}" alt="" width="96" height="60">
+      <span><small>{category}</small><strong>{name}</strong></span></a>''')
 template = (ROOT / "desktop.html").read_text(encoding="utf-8")
 for path,entry in [("index.html",""),("page.html","links"),("page_2.html","works")]:
     page = template
@@ -96,7 +105,8 @@ for path,entry in [("index.html",""),("page.html","links"),("page_2.html","works
     content = sorted(panes, key=lambda key: key != (entry or "works"))
     replacements = dict(title=apps.get(entry,"ナカコウの作品集"),entry=entry,symbols=symbols,
                         camera=escape(json.dumps(camera),quote=True),shortcuts=menu,menu=menu,
-                        content=''.join(panes[k] for k in content)+archive+''.join(map(work_detail,items)))
+                        content=''.join(panes[k] for k in content)+archive+''.join(map(work_detail,items)),
+                        portfolioPicks=''.join(portfolio_picks))
     for key,name in [("menuIcon","menu"),("soundIcon","sound"),("zoomIcon","zoom"),("weatherIcon","weather")]:
         replacements[key]=icon(name)
     for key,value in replacements.items():
