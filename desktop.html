@@ -7,11 +7,10 @@
 <meta name="description" content="ナカコウの作品集。Scratchで作った3Dゲーム、LEGOのからくり、解説動画、GitHubのソースコードと資料。">
 <title>{{title}} | nakakou</title>
 <link rel="icon" href="862e42a0e183c0f94fc2ebb448783c47.jpg">
-<link rel="stylesheet" href="desktop.css?v=portfolio-2">
-<link rel="stylesheet" href="portfolio.css?v=2">
+<link rel="stylesheet" href="desktop.css">
 <script defer src="assets/wallpaper.js"></script>
 <script defer src="desk-renderer.js"></script>
-<script defer src="desktop.js?v=portfolio-2"></script>
+<script defer src="desktop.js?v=optics-1"></script>
 </head>
 <body data-entry="{{entry}}">
 <svg aria-hidden="true" class="symbols"><defs>{{symbols}}</defs></svg>
@@ -58,18 +57,6 @@
     </nav>
   </main>
   <button id="enter" type="button">{{zoomIcon}}<span>画面を拡大</span></button>
-  <section id="portfolio-index" aria-labelledby="portfolio-name">
-    <header>
-      <a class="portfolio-owner" href="#profile"><img src="862e42a0e183c0f94fc2ebb448783c47.jpg" alt="" width="32" height="32"><span>ナカコウ</span></a>
-      <h2 id="portfolio-name">作品集</h2>
-      <p>Scratchのゲーム、制作の解説、<br class="wide-only">3Dプリントで作る機構。</p>
-    </header>
-    <div class="portfolio-picks">{{portfolioPicks}}</div>
-    <nav class="portfolio-links" aria-label="作品集の入口">
-      <a href="#works">制作物をすべて見る <span aria-hidden="true">→</span></a>
-      <a href="#github">GitHub・公開資料 <span aria-hidden="true">→</span></a>
-    </nav>
-  </section>
   <nav id="bench-controls" aria-label="工作机の操作" hidden>
     <button type="button" id="reset-view">正面に戻す</button>
     <button type="button" id="inspect-safe">からくり金庫を見る</button>
@@ -78,13 +65,9 @@
   <aside id="project-details" aria-labelledby="safe-title" hidden>
     <button type="button" id="back-desk">‹ 机に戻る</button>
     <h2 id="safe-title">からくり金庫</h2>
-    <p>3Dプリント試作 040。複数の操作部を順に動かして開ける機構です。</p>
-    <dl class="project-spec">
-      <div><dt>操作部</dt><dd>8か所</dd></div>
-      <div><dt>想定手順</dt><dd>20手</dd></div>
-    </dl>
+    <p>3Dプリント試作 040</p>
+    <p>8つの操作部を順に動かす、20手を想定した機構の試作です。</p>
     <p>ドラッグで角度を変えられます。</p>
-    <a class="project-related" href="#work-pwBZAH-Vdl8">関連作品 · LEGOのからくり金庫 →</a>
     <p id="project-status" hidden>モデルを読み込めませんでした。</p>
   </aside>
   <div id="boot" hidden><div class="boot-inner">
