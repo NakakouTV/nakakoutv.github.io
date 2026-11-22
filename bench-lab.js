@@ -14,6 +14,7 @@ export function createLab(scene) {
   const white=light(pigments.pale), mutedBlue=light('#1870a8');
   const ceramic=standard('#a0aec5',.26), gasket=standard('#0b111c',.03);
   const champagne=standard('#ad9272',.57);
+  const enamel=standard('#acb6cd',.18);
   const boxGeometry=new T.BoxGeometry(1,1,1);
 
   function box(parent,x,y,z,w,h,d,material) {
@@ -92,9 +93,13 @@ export function createLab(scene) {
   cylinder(lift,0,-.025,0,.60,.53,.13,trim,36);
   cylinder(lift,0,.045,0,.553,.573,.045,ceramic,36);
   ring(lift,0,.070,0,.535,.021,lime,48);
-  for(const x of [-.32,.32]){
-    box(lift,x,.156,0,.027,.27,.027,cyan);
-    box(lift,x,.025,0,.12,.05,.35,shell);
+  for(const x of [-.28,.28]){
+    link(lift,[x*1.34,.08,.31],[x*.66,.51,.08],.105,.13,enamel);
+    link(lift,[x*1.34,.08,-.31],[x*.66,.51,-.08],.105,.13,enamel);
+    const shoe=box(lift,x*1.28,.096,0,.19,.069,.59,trim);
+    shoe.rotation.y=Math.sign(x)*.08;
+    cylinder(lift,x*.65,.50,0,.078,.092,.124,champagne,32);
+    fastener(lift,x*1.28,.137,.205,.024);
   }
 
   const capsule = new T.Group();
@@ -217,23 +222,27 @@ export function createLab(scene) {
   for(let i=0;i<4;i++)box(gauge,-.135+i*.09,.103,0,.049,.008,.12,i===3?lime:cyan);
 
   const projector = new T.Group();projector.position.set(4.69,0,-1.75);scene.add(projector);
-  extrude(projector,chamfer(0,0,1.87,1.52,.28),.00,.135,trim);
-  extrude(projector,chamfer(0,0,1.72,1.37,.26),.151,.030,ceramic,[],.023);
-  cylinder(projector,0,.173,0,.684,.712,.16,gasket,48);
-  cylinder(projector,0,.26,0,.647,.677,.058,metal,48);
-  cylinder(projector,0,.286,0,.484,.484,.038,inset,48);
-  ring(projector,0,.296,0,.64,.020,pink,56);
-  ring(projector,0,.307,0,.478,.013,cyan,56);
-  cylinder(projector,0,.307,0,.175,.236,.057,ceramic,40);
-  cylinder(projector,0,.339,0,.151,.169,.025,cyan,40);
-  for(const x of [-.62,.62])for(const z of [-.48,.48])fastener(projector,x,.211,z,.024);
-  for(let i=0;i<9;i++)box(projector,-.34+i*.085,.097,.74,.047,.051,.011,gasket);
-  for(let i=0;i<8;i++){
-    const a=i*Math.PI/4;
-    const emitter=box(projector,Math.cos(a)*.561,.305,Math.sin(a)*.561,.075,.027,.075,i%2?metal:cyan);
-    emitter.rotation.y=-a;
+  // Forked optical bench. The two cast arms carry a separate lens barrel,
+  // and their open center keeps the optical head readable from behind.
+  const fork=[[ -.98,.59],[-1.09,.30],[-.83,-.58],[-.53,-.80],[.60,-.80],[.96,-.55],[1.08,.28],[.96,.60],[.61,.60],[.50,.34],[.39,-.28],[-.43,-.28],[-.56,.38],[-.63,.60]];
+  extrude(projector,fork,.045,.105,trim,[],.06);
+  for(const side of [-1,1]){
+    const arm=[[.55,.54],[.96,.50],[1.01,.22],[.83,-.44],[.57,-.60],[.45,-.36]].map(([x,z])=>[side*x,z]);
+    extrude(projector,arm,.16,.18,enamel,[],.066);
+    link(projector,[side*.67,.30,.38],[side*.52,.56,.0],.18,.25,shell);
+    const journal=cylinder(projector,side*.49,.48,0,.171,.171,.31,champagne,40);
+    journal.rotation.z=Math.PI/2;
+    const axle=cylinder(projector,side*.64,.48,0,.103,.103,.029,gasket,32);
+    axle.rotation.z=Math.PI/2;
+    for(let i=0;i<6;i++)box(projector,side*(.62+i*.053),.384,.155-i*.061,.021,.021,.102,gasket);
   }
-  const beam = new T.Mesh(new T.CylinderGeometry(.71,.17,1.55,8,1,true),
+  cylinder(projector,0,.41,0,.375,.285,.19,shell,48);
+  cylinder(projector,0,.516,0,.409,.386,.052,champagne,56);
+  cylinder(projector,0,.55,0,.362,.373,.047,gasket,56);
+  ring(projector,0,.576,0,.342,.023,pink,56);
+  cylinder(projector,0,.57,0,.254,.273,.032,trim,48);
+  cylinder(projector,0,.589,0,.153,.165,.015,cyan,48);
+  const beam = new T.Mesh(new T.CylinderGeometry(.71,.17,1.27,12,1,true),
     new T.ShaderMaterial({
       transparent:true,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending,
       uniforms:{time:{value:0}},
@@ -245,7 +254,7 @@ export function createLab(scene) {
         gl_FragColor=vec4(.0,.64,1.,(lines*.12+sweep*.13+.041)*falloff);
       }`,
     }));
-  beam.position.y=1.06;projector.add(beam);
+  beam.position.y=1.233;projector.add(beam);
 
   const projection=new T.Group();projection.position.y=1.65;projector.add(projection);
   const cyanWire=new T.LineBasicMaterial({color:pigments.cyan,transparent:true,opacity:.84});
@@ -332,20 +341,25 @@ export function createLab(scene) {
       label(ctx,'PROJECTION',270,203,pigments.pink,14);
       rule(ctx,[[24,243],[171,243],[181,251],[416,251]],cyanLine,2);
     });
-    const acrylic=new T.Mesh(new T.BoxGeometry(2.27,1.40,.053),
+    const glassShape=new T.Shape([
+      [-1.14,-.46],[-.93,-.70],[.89,-.70],[1.14,-.46],
+      [1.14,.53],[.95,.70],[-.97,.70],[-1.14,.51],
+    ].map(([x,y])=>new T.Vector2(x,y)));
+    const acrylic=new T.Mesh(new T.ExtrudeGeometry(glassShape,{depth:.034,bevelThickness:.011,bevelSize:.012,bevelSegments:2}),
       new T.MeshPhysicalMaterial({color:'#54dfff',roughness:.16,clearcoat:1,transparent:true,opacity:.15,depthWrite:false}));
-    left.add(acrylic);
+    acrylic.position.z=-.024;left.add(acrylic);
     acrylic.renderOrder=4;
     const markings=displayTexture(left,glass.texture,2.23,1.37,true,T.DoubleSide);
     markings.position.z=.032;markings.renderOrder=5;
-    for(const y of [-.699,.699]){
-      box(left,0,y,-.013,2.32,.047,.056,shell);
-      box(left,-.53,y,.023,1.07,.013,.016,cyan);
+    for(const side of [-1,1]){
+      link(left,[side*.71,-.685,.001],[side*.92,-.685,.001],.10,.10,enamel);
+      link(left,[side*.92,-.685,.001],[side*1.13,-.458,.001],.095,.10,enamel);
+      link(left,[side*1.13,-.458,.001],[side*1.13,-.348,.001],.055,.10,shell);
+      box(left,side*.92,.703,-.007,.14,.04,.055,champagne);
     }
-    for(const x of [-1.135,1.135]){
-      box(left,x,0,0,.023,1.42,.029,mutedBlue);
-      for(const side of [-1,1])box(left,x,side*.646,.012,.075,.10,.06,shell);
-    }
+    box(left,0,-.746,-.023,1.56,.134,.14,trim);
+    box(left,0,-.729,.054,1.37,.023,.019,cyan);
+    box(left,-.95,.676,.022,.28,.013,.017,mutedBlue);
     const foot=[-5.23,.12,-2.08],hinge=[-5.50,1.04,-2.22],head=[-5.36,1.39,-2.12];
     link(scene,foot,hinge,.21,.14,trim);
     link(scene,hinge,head,.17,.12,metal);
@@ -403,7 +417,7 @@ export function createLab(scene) {
     label(ctx,'PROJECTION SIGNAL',310,188,pigments.cyan,15);
     rule(ctx,[[19,215],[542,215]],pigments.cyan,3);
   });
-  const panelX=.94,panelZ=-.86;
+  const panelX=1.20,panelZ=-.86;
   extrude(scene,chamfer(panelX,panelZ,2.0,.99,.13),-.022,.054,trim,[],.012);
   const deskScreen=displayTexture(scene,deskGraphic.texture,1.86,.81);
   deskScreen.position.set(panelX,.048,panelZ);deskScreen.rotation.x=-Math.PI/2;

@@ -1,5 +1,5 @@
 import * as T from './assets/three.module.js';
-import {createLab} from './bench-lab.js?v=bench-2';
+import {createLab} from './bench-lab.js?v=hardware-3';
 import {createBenchOptics} from './bench-optics.js';
 
 export function createWorkbench(stage) {
@@ -31,6 +31,8 @@ export function createWorkbench(stage) {
 
   const lab=createLab(scene);
   const {box,slot,shell,trim,metal,cyan}=lab;
+  const housing=new T.MeshStandardMaterial({color:0xabbac9,metalness:.38,roughness:.38});
+  const anodized=new T.MeshStandardMaterial({color:0x9e8063,metalness:.56,roughness:.4});
   const floor=new T.MeshStandardMaterial({color:0x242137,roughness:.92});
   box(scene,0,-2.79,0,100,.1,100,floor);
   const grid=new T.GridHelper(70,70,0x454474,0x272741);
@@ -39,23 +41,38 @@ export function createWorkbench(stage) {
   const monitor=new T.Group();monitor.position.set(-.47,0,-1.56);scene.add(monitor);
   const screenW=4.95,screenH=2.81,screenY=2.42,screenZ=.10;
   const bezel=new T.MeshStandardMaterial({color:0x17172c,roughness:.51,metalness:.26});
-  box(monitor,0,screenY,-.054,5.15,3.01,.12,trim);
-  box(monitor,0,screenY,.024,5.075,2.94,.135,bezel);
-  box(monitor,0,screenY,-.133,2.20,1.23,.119,trim);
-  box(monitor,0,screenY-.34,-.201,1.81,.30,.030,bezel);
-  for(let i=0;i<14;i++)box(monitor,-1.005+i*.154,2.82,-.199,.062,.22,.018,bezel);
-  for(let i=0;i<4;i++)box(monitor,-.68+i*.19,screenY-.36,-.220,.123,.056,.017,metal);
-  box(monitor,2.10,.968,.086,.079,.014,.022,cyan);
-  for(let i=0;i<3;i++)box(monitor,2.22+i*.07,.964,.085,.036,.021,.026,metal);
-  for(const side of [-1,1]){
-    const arm=box(monitor,side*.54,.63,-.125,.123,1.23,.21,metal);
-    arm.rotation.z=side*.35;
-    const accent=box(monitor,side*.54,.63,-.236,.082,1.05,.027,bezel);
-    accent.rotation.z=side*.35;
-    box(monitor,side*.36,1.16,-.165,.228,.168,.22,trim);
-    box(monitor,side*.74,.078,-.05,.42,.126,.70,shell);
-    box(monitor,side*.74,.099,.31,.24,.031,.035,cyan);
+  function plate(points,z,depth,material,bevel=.036){
+    const shape=new T.Shape(points.map(([x,y])=>new T.Vector2(x,y)));
+    const mesh=new T.Mesh(new T.ExtrudeGeometry(shape,{
+      depth,bevelSize:bevel,bevelThickness:bevel,bevelSegments:3,
+    }),material);
+    mesh.position.z=z;monitor.add(mesh);
   }
+  // A tapered rear casting, a thin screen lip and a separate lower I/O chin.
+  plate([[-2.59,1.11],[-2.59,3.66],[-2.36,3.91],[2.37,3.91],[2.59,3.70],[2.59,1.18],[2.30,.91],[-2.39,.91]],-.116,.145,housing,.043);
+  box(monitor,0,screenY,.031,5.035,2.90,.123,bezel);
+  plate([[-1.51,1.66],[-1.28,3.10],[.81,3.10],[1.39,2.63],[1.39,1.64],[.91,1.35],[-1.27,1.35]],-.268,.13,trim,.068);
+  plate([[.76,.845],[2.29,.845],[2.47,.947],[2.26,.993],[.94,.993]],.015,.081,anodized,.016);
+  box(monitor,2.10,.928,.115,.081,.012,.016,cyan);
+  for(let i=0;i<3;i++)box(monitor,2.25+i*.057,.932,.116,.029,.021,.022,bezel);
+  for(let i=0;i<13;i++)box(monitor,-1.09+i*.165,2.77,-.344,.062,.20,.018,bezel);
+  for(let i=0;i<4;i++)box(monitor,-.68+i*.19,1.68,-.347,.123,.056,.017,metal);
+
+  // A load-bearing arm with two pivots takes the place of the twin posts.
+  const armOutline=[[-.66,.14],[-.94,.20],[-.83,.65],[-.54,.91],[.07,1.08],
+    [.30,1.27],[.40,1.82],[.63,1.82],[.58,1.19],[.31,.92],[-.32,.73],[-.58,.45]];
+  plate(armOutline,-.46,.23,housing,.050);
+  plate([[-.75,.28],[-.70,.57],[-.46,.78],[.09,.94],[.04,.86],[-.43,.64],[-.61,.37]],-.464,.026,bezel,.015);
+  for(const [x,y,z,r] of [[-.67,.22,-.345,.223],[.49,1.77,-.345,.175]]){
+    const pin=new T.Mesh(new T.CylinderGeometry(r,r,.324,40),anodized);
+    pin.rotation.x=Math.PI/2;pin.position.set(x,y,z);monitor.add(pin);
+    box(monitor,x,y,z+.171,.137,.034,.016,bezel);
+  }
+  plate([[-1.49,.047],[-1.22,.008],[.26,.008],[.56,.059],[.38,.17],[-1.37,.17]],-.89,1.51,trim,.036);
+  box(monitor,-.80,.130,.67,.35,.031,.022,cyan);
+  const feed=new T.CatmullRomCurve3([[-.98,.10,.36],[-1.02,.18,-.35],[-.80,.59,-.53],
+    [-.37,.84,-.51],[.18,1.14,-.52],[.40,1.55,-.36]].map(p=>new T.Vector3(...p)));
+  monitor.add(new T.Mesh(new T.TubeGeometry(feed,32,.029,9),bezel));
   const surface=new T.Mesh(new T.PlaneGeometry(screenW,screenH),new T.MeshBasicMaterial({color:0x11101e}));
   surface.position.set(0,screenY,screenZ);monitor.add(surface);
   new T.TextureLoader().load('assets/wallpaper.webp',texture=>{

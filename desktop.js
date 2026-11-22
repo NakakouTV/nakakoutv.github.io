@@ -6,7 +6,7 @@
   let camera = window.benchCamera;
   document.body.classList.add('ready');
   try {
-    const {createWorkbench}=await import('./bench-world.js?v=bench-2');
+    const {createWorkbench}=await import('./bench-world.js?v=hardware-3');
     camera=createWorkbench(stage);
     window.benchCamera=camera;
   } catch (error) {
