@@ -14,7 +14,7 @@ GitHub Pages 用の静的サイト。工作机のパソコンから、Scratchと
 
 ## 画面の構成
 
-- 通常表示は `bench-world.js` のリアルタイム3Dです。ポスト処理でピクセル化、限定色化、ディザリングを行い、OSはモニターの投影座標に合わせて配置します。画面をドラッグすると机の周囲を回り、金庫を選ぶと同じシーンで寄って観察できます。配色は [CYBERPUNK / NEON CITY](https://lospec.com/palette-list/cyberpunk-neon-city) を使っています。
+- 通常表示は `bench-world.js` のリアルタイム3Dです。`bench-optics.js` は描画バッファーの解像度でシーンを合成し、発光部の周りの光だけをぼかします。OSはモニターの投影座標に合わせて配置します。画面をドラッグすると机の周囲を回り、金庫を選ぶと同じシーンで寄って観察できます。配色は [CYBERPUNK / NEON CITY](https://lospec.com/palette-list/cyberpunk-neon-city) を使っています。
 - 金庫は040版の組立メッシュを `art/export_safe.py` でWeb向けに書き出したものです。追加作品は `bench-world.js` 内の台座とモデルの配置を起点に追加できます。以下のBlenderレンダーは静止表示用です。
 - `bench-lab.js` はリフトの開口部を含む天板、補助モニター、ホログラム、工具と台座を生成します。左の透過パネルに視点の角度、右モニターと天板にリフトの状態を表示します。開口部か「リフトを収納／上げる」でカプセルを昇降できます。
 

@@ -1,5 +1,6 @@
 import * as T from './assets/three.module.js';
 import {createLab} from './bench-lab.js';
+import {createBenchOptics} from './bench-optics.js';
 
 export function createWorkbench(stage) {
   const display = document.getElementById('display');
@@ -19,28 +20,7 @@ export function createWorkbench(stage) {
   display.style.removeProperty('height');
   display.style.removeProperty('transform');
   fallback.hidden=true;
-  const buffer = new T.WebGLRenderTarget(1,1,{magFilter:T.NearestFilter,minFilter:T.NearestFilter});
-  const post = new T.Scene();
-  const colors=['0a0a14','12101e','1c1830','2a2445','0d2240','0a3a5c','105080','1870a8','ff0090','ff44cc','00ffff','00ccff','ccff00','ff6600','ffe040','e8e8ff'];
-  const palette=colors.map(hex=> 'vec3('+hex.match(/../g).map(v=>(parseInt(v,16)/255).toFixed(4)).join(',')+')');
-  const shader=new T.ShaderMaterial({
-    uniforms:{image:{value:buffer.texture},cells:{value:new T.Vector2()}},
-    vertexShader:'varying vec2 uv0; void main(){uv0=uv;gl_Position=vec4(position.xy,0.,1.);}',
-    fragmentShader:`
-      varying vec2 uv0;uniform sampler2D image;uniform vec2 cells;
-      void main(){
-        vec2 p=floor(uv0*cells), q=(p+.5)/cells;
-        vec3 src=texture2D(image,q).rgb;
-        vec3 rgb=mix(12.92*src,1.055*pow(max(src,vec3(0.)),vec3(.416667))-.055,step(vec3(.0031308),src));
-        float b=mod(p.x+2.*mod(p.y,2.),4.);
-        rgb+=(b-1.5)*.012;
-        vec3 chosen;float best=100.;
-        ${palette.map((v,i)=>`vec3 c${i}=${v};float d${i}=dot(rgb-c${i},rgb-c${i});if(d${i}<best){best=d${i};chosen=c${i};}`).join('')}
-        gl_FragColor=vec4(mix(chosen,rgb,.19),1.);
-      }`
-  });
-  post.add(new T.Mesh(new T.PlaneGeometry(2,2),shader));
-  const ortho=new T.Camera();
+  const optics=createBenchOptics(renderer);
   scene.add(new T.HemisphereLight(0xc8ddff,0x504065,1.9));
   function light(color,intensity,x,y,z){
     const lamp=new T.PointLight(color,intensity,22,2);
@@ -153,10 +133,7 @@ export function createWorkbench(stage) {
   function fit() {
     const w=stage.clientWidth,h=stage.clientHeight;
     if(!w||!h)return;
-    renderer.setSize(w,h,false);
-    const pixelSize=w<600?1.65:Math.max(2.3,w/860);
-    buffer.setSize(Math.max(1,Math.ceil(w/pixelSize)),Math.max(1,Math.ceil(h/pixelSize)));
-    shader.uniforms.cells.value.set(buffer.width,buffer.height);
+    optics.resize(w,h);
     camera.aspect=w/h;camera.updateProjectionMatrix();
     dirty=true;
   }
@@ -198,8 +175,7 @@ export function createWorkbench(stage) {
     current.lerp(aim,amount);look.lerp(target,amount);
     camera.position.copy(current);camera.lookAt(look);
     corridor.visible=camera.position.z>-19.6;
-    renderer.setRenderTarget(buffer);renderer.render(scene,camera);
-    renderer.setRenderTarget(null);renderer.render(post,ortho);
+    optics.render(scene,camera);
     projectScreen();
     dirty=current.distanceToSquared(aim)+look.distanceToSquared(target)>.00001;
   }
